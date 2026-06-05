@@ -69,22 +69,20 @@ export function Credentials() {
             // education
           </p>
 
-          <h3 className="lowercase text-xl sm:text-2xl font-light text-white leading-snug">
+          <h3 className="text-xl sm:text-2xl font-light text-white leading-snug">
             {education.degree}
           </h3>
 
-          <p className="font-mono text-[11px] text-white/50 lowercase mt-2">
-            {education.institution}
-          </p>
+          <p className="font-mono text-[11px] text-white/50 mt-2">{education.institution}</p>
           <p className="font-mono text-[11px] text-white/40 lowercase mt-0.5">{education.period}</p>
 
           <div className="mt-4 flex flex-col gap-1.5">
-            <p className="font-mono text-xs text-white/60 lowercase">
-              <span className="text-white/30">cgpa</span>
+            <p className="font-mono text-xs text-white/60">
+              <span className="text-white/30">CGPA</span>
               {"  "}
               {education.cgpa}
             </p>
-            <p className="font-mono text-xs text-white/60 lowercase">
+            <p className="font-mono text-xs text-white/60">
               <span className="text-white/30">role</span>
               {"  "}
               {education.highlight}

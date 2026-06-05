@@ -101,7 +101,6 @@ export const experience: CardItem[] = [
     description:
       "Managed release orchestration for 7 enterprise application portfolios via Azure DevOps. Maintained 99.9% application availability and administered lifecycle for 50+ SSL/TLS certificates.",
     image: resolveImage("/abstract-server-rack.jpg"),
-    link: "https://www.cognizant.com",
   },
   {
     id: "e2",
@@ -109,28 +108,18 @@ export const experience: CardItem[] = [
     subtitle: "iisc bangalore · dec 2024→mar 2025",
     meta: "iisc",
     description:
-      "Engineered full-stack ORSI portal (Next.js) and designed a Simulated Annealing-based Decision Support System (Python) that reduced scheduling costs by 67-74%.",
+      "Engineered full-stack ORSI portal (Next.js) and designed a Simulated Annealing-based algorithm for reducing operational cost in SRME.",
     image: resolveImage("/abstract-neural-net.jpg"),
-    link: "https://mgmt.iisc.ac.in/",
+    link: "https://new-bwm.vercel.app/",
   },
   {
     id: "e3",
-    title: "Director of Operations",
+    title: "community ops",
     subtitle: "techtribe · nov 2025→present",
     meta: "techtribe",
     description:
       "Led operations for an 1800+ member tech community; spearheaded hackathons and technical events designed to make engineering accessible.",
     image: resolveImage("/abstract-nodes.jpg"),
-  },
-  {
-    id: "e4",
-    title: "Chief Executive Officer",
-    subtitle: "e-cell tce · aug 2024→jul 2025",
-    meta: "ecell",
-    description:
-      "Coordinated 5 operational verticals and 1000+ student volunteers across 5 large-scale events.",
-    image: resolveImage("/abstract-wireframe.jpg"),
-    link: "https://www.instagram.com/ecelltce/",
   },
 ];
 
@@ -138,8 +127,8 @@ const educationEntries: CardItem[] = [
   {
     id: "ed1",
     title: "B.E. Computer Science & Engineering",
-    subtitle: "thiagarajar college of engineering · 2021→2025",
-    description: "CGPA: 8.11/10. Chair of IEEE Computer Society TCE.",
+    subtitle: "Thiagarajar College of Engineering · 2021→2025",
+    description: "CGPA: 8.11/10.",
     image: resolveImage("/abstract-education.jpg"),
     link: "https://www.tce.edu",
   },
@@ -186,11 +175,11 @@ export const contact = {
 };
 
 export const seo = {
-  title: "gokul badrappan // live infrastructure",
+  title: "",
   description: "DevOps Engineer & SRE Portfolio.",
   url: "https://www.gokulb.com",
   openGraph: {
-    title: "gokul badrappan // live infrastructure",
+    title: "",
     description: "DevOps Engineer & SRE Portfolio.",
   },
   keywords: ["Gokul Badrappan", "DevOps", "SRE", "Cloud Infrastructure", "Azure", "AWS", "CI/CD"],

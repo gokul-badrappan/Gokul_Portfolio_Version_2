@@ -4,6 +4,72 @@ import { Box } from "lucide-react";
 import { hero } from "@/data/portfolio";
 import { ResumeButton } from "./ResumeButton";
 
+export function useBlinkingTitle() {
+  useEffect(() => {
+    // Note: If you still want to pivot to Software Engineering, 
+    // you might want to sneak "> software" into this array!
+    const frames = [
+      "> gokul",
+      "> devops",
+      "> cloud",
+      "> sre",
+      "> infrastructure",
+    ];
+
+    // Favicon injection
+    let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.type = "image/svg+xml";
+    link.href = "/favicon.svg";
+
+    let frameIndex = 0;
+    let charIndex = 0;
+    let isTyping = true;
+    let pauseCount = 0;
+    const PAUSE_FRAMES = 8; // Increased slightly so recruiters can actually read it
+
+    const interval = setInterval(() => {
+      const current = frames[frameIndex];
+
+      if (isTyping) {
+        // FIX: Only increment if we haven't reached the end of the word
+        if (charIndex < current.length) {
+          charIndex++;
+        }
+        
+        document.title = `${current.slice(0, charIndex)}_`;
+
+        // Once the word is fully typed, start counting the pause frames
+        if (charIndex === current.length) {
+          pauseCount++;
+          if (pauseCount >= PAUSE_FRAMES) {
+            pauseCount = 0;
+            isTyping = false; // Trigger the erasing phase
+          }
+        }
+      } else {
+        // erasing backward
+        charIndex--;
+        document.title = charIndex > 0
+          ? `${current.slice(0, charIndex)}_`
+          : `_`;
+
+        if (charIndex === 0) {
+          // move to next word
+          frameIndex = (frameIndex + 1) % frames.length;
+          isTyping = true;
+        }
+      }
+    }, 120);
+
+    return () => clearInterval(interval);
+  }, []);
+}
+
 const GLOW_STYLE = { color: "rgb(58,108,215)" };
 const POD_FALLBACK = "S-SYSTEM";
 
@@ -29,6 +95,9 @@ function HeadlineWithGlow({ text, glow }: { text: string; glow: string }) {
 }
 
 export function Hero() {
+
+  useBlinkingTitle();
+
   const [podId, setPodId] = useState(POD_FALLBACK);
 
   useEffect(() => {
