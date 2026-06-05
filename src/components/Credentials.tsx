@@ -51,7 +51,7 @@ export function Credentials() {
         <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">
           // 04 · credentials
         </p>
-        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">credentials</h2>
+        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">degrees & certifications</h2>
       </div>
 
       {/* Two-column grid on md+, stacked on mobile */}

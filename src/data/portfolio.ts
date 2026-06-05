@@ -181,7 +181,7 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/gokulbadrappan",
   twitter: null as string | null,
   blurb: "",
-  contactHeading: "open a socket",
+  contactHeading: "get in touch",
   footer: "© 2026 • all systems nominal",
 };
 

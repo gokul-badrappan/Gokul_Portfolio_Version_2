@@ -9,8 +9,8 @@ export function Experience({ items }: Props) {
   return (
     <section id="experience" className="py-32 px-6">
       <div className="mb-12">
-        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">// experience</p>
-        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">trajectory</h2>
+        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">// 03 · trajectory</p>
+        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">experience</h2>
       </div>
 
       <div className="flex flex-col gap-6">

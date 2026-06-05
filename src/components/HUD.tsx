@@ -85,10 +85,10 @@ export function HUD() {
     <>
       <div className={`${base} top-3 left-3`}>{tz ? `${tz} ` : ""}{time}</div>
       <div className={`${base} top-3 right-3`}>ping: {ping}ms</div>
-      <div className={`${base} bottom-3 left-3`}>
+      <div className={`${base} bottom-3 left-3 hidden sm:block`}>
         viewport: {vp.w}x{vp.h}
       </div>
-      <div className={`${base} bottom-3 right-3`}>load: {load}</div>
+      <div className={`${base} bottom-3 right-3 hidden sm:block`}>load: {load}</div>
     </>
   );
 }

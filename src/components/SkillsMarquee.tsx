@@ -40,8 +40,8 @@ export function SkillsMarquee() {
   return (
     <section id="skills" ref={sectionRef} className="py-32 overflow-x-hidden">
       <div className="px-6 mb-12">
-        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">// 01 · skills</p>
-        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">stack &amp; tooling</h2>
+        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">// 01 · stack</p>
+        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">technical skills</h2>
       </div>
 
       <div className="space-y-8">

@@ -74,8 +74,8 @@ export function CardGrid({ id, label, title, items }: Props) {
             >
               {!it.image && <span>{it.title[0]}</span>}
             </div>
-            <div className="absolute bottom-2 left-2 font-mono text-[10px] text-white/50 lowercase opacity-0 group-hover:opacity-100 transition-opacity">
-              {it.meta ?? "open ↗"}
+            <div className="absolute bottom-2 left-2 font-mono text-[10px] text-white/50 lowercase opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+              {it.meta ?? "tap to view ↗"}
             </div>
           </motion.button>
         ))}
@@ -109,14 +109,14 @@ export function CardGrid({ id, label, title, items }: Props) {
                 <h3 className="lowercase text-2xl font-light mt-1">{active.title}</h3>
                 <p className="mt-4 text-sm text-white/70 leading-relaxed">{active.description}</p>
                 {active.tech && active.tech.length > 0 && (
-                  <p className="mt-3 font-mono text-[10px] text-white/40 lowercase">
+                  <p className="mt-3 font-mono text-xs text-white/40 lowercase">
                     {active.tech.join(" · ")}
                   </p>
                 )}
                 <ModalLinks item={active} />
                 <button
                   onClick={() => setActive(null)}
-                  className="mt-6 font-mono text-xs lowercase px-3 py-1.5 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition"
+                  className="mt-6 font-mono text-xs lowercase px-4 py-2.5 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition"
                 >
                   close ×
                 </button>

@@ -38,8 +38,8 @@ export function Projects({ items }: Props) {
   return (
     <section id="projects" className="py-32 px-6">
       <div className="mb-12">
-        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">// projects</p>
-        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">deployments</h2>
+        <p className="font-mono text-xs text-white/40 lowercase tracking-[0.3em]">//02· portfolio</p>
+        <h2 className="lowercase text-3xl sm:text-5xl font-light mt-2">featured projects</h2>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -73,8 +73,8 @@ export function Projects({ items }: Props) {
             )}
 
             {/* Hover hint */}
-            <p className="mt-3 font-mono text-[10px] text-white/30 lowercase opacity-0 group-hover:opacity-100 transition-opacity">
-              {it.meta ?? "open ↗"}
+            <p className="mt-3 font-mono text-[10px] text-white/30 lowercase opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+              {it.meta ?? "tap to view ↗"}
             </p>
           </motion.button>
         ))}
@@ -114,7 +114,7 @@ export function Projects({ items }: Props) {
                 <ModalLinks item={active} />
                 <button
                   onClick={() => setActive(null)}
-                  className="mt-6 font-mono text-xs lowercase px-3 py-1.5 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition"
+                  className="mt-6 font-mono text-xs lowercase px-4 py-2.5 rounded-full border border-white/15 text-white/70 hover:text-white hover:border-white/30 transition"
                 >
                   close ×
                 </button>

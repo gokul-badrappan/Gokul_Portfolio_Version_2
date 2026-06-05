@@ -22,12 +22,12 @@ export function Navbar() {
           transition={{ type: "spring", stiffness: 220, damping: 26 }}
           className="fixed top-4 left-1/2 -translate-x-1/2 z-40"
         >
-          <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full backdrop-blur-md bg-white/10 border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+          <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full backdrop-blur-md bg-white/10 border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.4)] overflow-x-auto scrollbar-none snap-x max-w-[90vw]">
             {links.map((l) => (
               <a
                 key={l}
                 href={`#${l}`}
-                className="font-mono text-[11px] sm:text-xs lowercase px-2.5 sm:px-3 py-1.5 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="font-mono text-[11px] sm:text-xs lowercase px-2.5 sm:px-3 py-1.5 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors shrink-0 snap-start"
               >
                 {l}
               </a>
