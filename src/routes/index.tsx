@@ -3,10 +3,12 @@ import { HUD } from "@/components/HUD";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { SkillsMarquee } from "@/components/SkillsMarquee";
-import { CardGrid } from "@/components/CardGrid";
+import { Experience } from "@/components/Experience";
+import { Projects } from "@/components/Projects";
+import { Credentials } from "@/components/Credentials";
 import { Pipeline } from "@/components/Pipeline";
 import { Contact } from "@/components/Contact";
-import { projects, experience, education, seo } from "@/data/portfolio";
+import { projects, experience, seo } from "@/data/portfolio";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,10 +38,18 @@ function Index() {
       <HUD />
       <Navbar />
       <Hero />
+      <div className="max-w-2xl mx-auto px-6 py-8 border-l-2 border-[rgb(58,108,215)] pl-4">
+        <p className="font-mono text-white/60 text-sm leading-relaxed">
+          <span className="block text-white/40 mb-1">system_overview:</span>
+          DevOps Engineer specializing in cloud infrastructure, CI/CD automation, and site
+          reliability. This dashboard logs active projects, professional experience, and technical
+          capabilities.
+        </p>
+      </div>
       <SkillsMarquee />
-      <CardGrid id="projects" label="02 · deployments" title="deployments" items={projects} />
-      <CardGrid id="experience" label="03 · experience" title="trajectory" items={experience} />
-      <CardGrid id="education" label="04 · credentials" title="credentials" items={education} />
+      <Projects items={projects} />
+      <Experience items={experience} />
+      <Credentials />
       <Pipeline />
       <Contact />
     </main>
