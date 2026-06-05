@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { skillsMarqueeRows } from "@/data/portfolio";
-import { resolveSkillRows } from "@/lib/skill-icons";
+import { resolveSkillRows } from "@/lib/skill-icons.tsx";
 
 gsap.registerPlugin(ScrollTrigger);
 

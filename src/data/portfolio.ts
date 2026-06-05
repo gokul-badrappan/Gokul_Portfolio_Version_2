@@ -40,9 +40,9 @@ export function getResumeHref(): string {
 }
 
 export const skillsMarqueeRows: string[][] = [
-  ["Docker", "Kubernetes", "Terraform", "Ansible", "Helm", "Prometheus", "Grafana"],
-  ["Azure DevOps", "Jenkins", "ArgoCD", "GitOps", "SonarQube", "Trivy", "Linux"],
-  ["Python", "Bash", "PowerShell", "React", "Next.js", "Flask", "Spring Boot"],
+  ["Docker", "Kubernetes", "Terraform", "Ansible", "Helm", "Prometheus", "Grafana", "ChatGPT"],
+  ["Azure DevOps", "Jenkins", "ArgoCD", "GitOps", "SonarQube", "Trivy", "Linux", "Gemini"],
+  ["Python", "Bash", "PowerShell", "React", "Next.js", "Flask", "Spring Boot", "Claude", "Cursor"],
 ];
 
 export const projects: CardItem[] = [
