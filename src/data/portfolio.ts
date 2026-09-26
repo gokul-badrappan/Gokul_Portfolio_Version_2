@@ -1,34 +1,26 @@
-import type { CardItem } from "@/components/CardGrid";
+import type { CardItem, Certification, SkillGroup } from "@/types/portfolio";
 
-const unsplash = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
-
-/** Fallbacks until abstract images are added under /public */
-const IMAGE_FALLBACKS: Record<string, string> = {
-  "/abstract-fiber-optics.jpg": unsplash("1635070041078-e363dbe005cb"),
-  "/abstract-data-mesh.jpg": unsplash("1526374965328-7f61d4dc18c5"),
-  "/abstract-topography.jpg": unsplash("1633265486064-086b219458ec"),
-  "/abstract-glow-grid.jpg": unsplash("1639762681485-074b7f938ba0"),
-  "/abstract-server-rack.jpg": unsplash("1558494949-ef010cbdcc31"),
-  "/abstract-neural-net.jpg": unsplash("1542831371-29b0f74f9713"),
-  "/abstract-nodes.jpg": unsplash("1620712943543-bcc4688e7485"),
-  "/abstract-wireframe.jpg": unsplash("1517077304055-6e89abbf09b0"),
-  "/abstract-education.jpg": unsplash("1607237138185-eedd9c632b0b"),
-  "/abstract-schooling.jpg": unsplash("1503676260728-1c00da094a0b"),
-  "/abstract-azure.jpg": unsplash("1639762681485-074b7f938ba0"),
-  "/abstract-aws.jpg": unsplash("1451187580459-43490279c0fa"),
-};
-
-export function resolveImage(path: string): string {
-  return IMAGE_FALLBACKS[path] ?? path;
-}
+// ─── Identity ────────────────────────────────────────────────────────────────
 
 export const hero = {
   name: "gokul badrappan",
-  headline: "engineering cloud infrastructure. automating with ai.",
-  glowingWord: "Cloud Infrastructure",
-  subtitleTags: [] as string[],
+  role: "devops engineer · chennai, india",
+  headline: "i ship releases safely and keep production up.",
+  glowingWord: "keep production up",
+  subtitleTags: ["azure", "aws", "kubernetes", "terraform", "observability"],
+  availability: "open to freelance devops work",
 };
+
+export const overview =
+  "DevOps engineer with 1.5 years of enterprise release orchestration, infrastructure automation, and platform observability on Azure. I own CI/CD delivery across 7 application portfolios and 4 environment tiers, and build GitOps, DevSecOps, and monitoring setups on the side. Azure and AWS certified.";
+
+/** Rendered as a terminal-style status readout in the hero. All figures come from the resume. */
+export const proofMetrics = [
+  { key: "availability", value: "99.9%", label: "sustained on supported enterprise apps" },
+  { key: "releases", value: "7", label: "app portfolios across 4 environment tiers" },
+  { key: "tls", value: "250+", label: "domains, zero expiry-driven outages" },
+  { key: "toil", value: "-60%", label: "time per ops task after automation" },
+];
 
 export const resume = {
   path: "/resume.pdf",
@@ -39,148 +31,258 @@ export function getResumeHref(): string {
   return import.meta.env.PROD ? resume.productionUrl : resume.path;
 }
 
-export const skillsMarqueeRows: string[][] = [
-  ["Docker", "Kubernetes", "Terraform", "Ansible", "Helm", "Prometheus", "Grafana", "ChatGPT"],
-  ["Azure DevOps", "Jenkins", "ArgoCD", "GitOps", "SonarQube", "Trivy", "Linux", "Gemini"],
-  ["Python", "Bash", "PowerShell", "React", "Next.js", "Flask", "Spring Boot", "Claude", "Cursor"],
-];
+// ─── Projects ────────────────────────────────────────────────────────────────
 
 export const projects: CardItem[] = [
   {
     id: "p1",
-    title: "Secure CI/CD Pipeline for Microservices",
-    subtitle: "gitops · devsecops · argocd",
-    meta: "github",
+    title: "AI Inference Gateway",
+    subtitle: "sre · aws · terraform · cost control",
+    meta: "case study",
     description:
-      "GitOps-based pipeline for zero-downtime K8s deployments. Integrated SonarQube & Trivy gates. Reduced execution time by 60% via layer caching.",
-    image: resolveImage("/abstract-fiber-optics.jpg"),
-    tech: ["Jenkins", "Docker", "Kubernetes", "ArgoCD", "SonarQube"],
-    github: "https://github.com/gokul-badrappan/secure-cicd",
+      "Model-serving gateway on ECS Fargate with per-request cost attribution in INR and a spend circuit breaker that sheds load at HTTP 429 before the upstream call.",
+    metrics: ["21 terraform resources", "429 load shedding", "recovery tested"],
+    tech: ["AWS ECS Fargate", "Terraform", "FastAPI", "Docker", "Prometheus", "Grafana"],
+    github: "https://github.com/gokul-badrappan/ai-inference-gateway",
+    caseStudy: {
+      problem:
+        "Calling an LLM API directly returns a response and token counts, but gives an operator no cost attribution, no service metrics, and no way to stop a runaway bill before it happens.",
+      architecture: [
+        ["client", "alb", "ecs fargate (fastapi gateway)", "spend circuit breaker", "llm api"],
+        ["gateway /metrics", "prometheus", "grafana"],
+        ["terraform", "vpc · iam · ssm · ecr · cloudwatch"],
+      ],
+      verified:
+        "Killed the running ECS task on purpose and timed how long ECS took to reschedule it and the ALB took to re-register the new target.",
+      results: [
+        "21 AWS resources provisioned and managed entirely in Terraform",
+        "Per-request cost attribution in INR with token accounting",
+        "Rolling-window spend circuit breaker returns HTTP 429 before the upstream call once the budget is exhausted",
+        "Latency, token, and cost metrics exported to Prometheus and visualised in Grafana",
+      ],
+    },
   },
   {
     id: "p2",
-    title: "Containerized Monitoring Stack",
-    subtitle: "observability · sre",
-    meta: "github",
+    title: "Secure CI/CD Pipeline for Spring Boot Microservices",
+    subtitle: "gitops · devsecops · argocd",
+    meta: "case study",
     description:
-      "Real-time observability platform monitoring CPU, memory, and microservice metrics. Configured Prometheus alerting rules simulating on-call incident detection.",
-    image: resolveImage("/abstract-data-mesh.jpg"),
-    tech: ["Prometheus", "Grafana", "Docker"],
-    github: "https://github.com/gokul-badrappan/observability-stack",
-  },
-  {
-    id: "p3",
-    title: "BWM Decision Support System",
-    subtitle: "python · algorithms",
-    meta: "live",
-    description:
-      "Flask/Python UI-driven MCDM tool implementing the Best-Worst Method algorithm, actively adopted by over 50 academic researchers.",
-    image: resolveImage("/abstract-topography.jpg"),
-    tech: ["Flask", "Python", "Tailwind CSS"],
-    demo: "https://bwm-v3.onrender.com/",
-  },
-  {
-    id: "p4",
-    title: "ORSI-KA Membership Portal",
-    subtitle: "full-stack · next.js",
-    meta: "live",
-    description:
-      "Engineered a full-stack membership portal reducing manual administrative workload by 70% and increasing event sign-up efficiency.",
-    image: resolveImage("/abstract-glow-grid.jpg"),
-    tech: ["Next.js", "Supabase", "Razorpay"],
-    demo: "https://www.orsi-ka.in",
+      "GitOps pipeline for zero-downtime Kubernetes deployments with SonarQube and Trivy quality and security gates.",
+    metrics: ["60% faster builds", "2 security gates", "zero-downtime deploys"],
+    tech: ["Jenkins", "Docker", "Kubernetes", "ArgoCD", "SonarQube", "Trivy"],
+    // TODO: publish the repo, then uncomment. The old link (secure-cicd) returned 404.
+    // github: "https://github.com/gokul-badrappan/<repo>",
+    caseStudy: {
+      problem:
+        "Microservice releases needed to be fast and repeatable without letting low-quality code or vulnerable images reach the cluster.",
+      architecture: [
+        ["git push", "jenkins build", "sonarqube gate", "docker build", "trivy scan"],
+        ["manifest update (git)", "argocd sync", "kubernetes"],
+      ],
+      verified:
+        "A failed SonarQube quality gate or a Trivy finding stops the pipeline before the image is promoted to the cluster.",
+      results: [
+        "Zero-downtime rolling deployments driven from Git by ArgoCD",
+        "Docker layer caching cut pipeline execution time by 60%",
+        "Code quality and image security checked on every build",
+      ],
+    },
   },
 ];
+
+// ─── Experience ──────────────────────────────────────────────────────────────
 
 export const experience: CardItem[] = [
   {
     id: "e1",
-    title: "Junior DevOps Engineer",
-    subtitle: "cognizant · jul 2025→present",
+    title: "DevOps Engineer",
+    subtitle: "cognizant · mar 2025 → present",
     meta: "cognizant",
     description:
-      "Managed release orchestration for 7 enterprise application portfolios via Azure DevOps. Maintained 99.9% application availability and administered lifecycle for 50+ SSL/TLS certificates.",
-    image: resolveImage("/abstract-server-rack.jpg"),
+      "Release orchestration, operations, and certificate lifecycle for enterprise applications on Azure.",
+    highlights: [
+      "Managed release orchestration for 7 enterprise application portfolios via Azure DevOps pipelines across 4 environment tiers (dev, test, staging, prod), speeding up deployment cycles by 30%",
+      "Sustained 99.9% availability on supported applications while resolving 70+ weekly ServiceNow change and incident requests and SSMS SQL deployments",
+      "Administered 50+ SSL/TLS certificates (DigiCert, internal CA) across 250+ domains, eliminating expiry-driven outages",
+      "Built automation scripts for recurring operational workflows, cutting per-task time by over 60% (5+ minutes to under 2)",
+      "Authored SOPs and monthly BAU reports used by 10+ cross-functional stakeholders, standardising 24/7 incident response",
+    ],
+    tech: ["Azure DevOps", "ServiceNow", "SSMS", "PowerShell", "DigiCert"],
   },
   {
     id: "e2",
-    title: "Web Dev & Research Intern",
-    subtitle: "iisc bangalore · dec 2024→mar 2025",
+    title: "Web Development & Research Intern",
+    subtitle: "iisc bangalore · dec 2024 → mar 2025",
     meta: "iisc",
     description:
-      "Engineered full-stack ORSI portal (Next.js) and designed a Simulated Annealing-based algorithm for reducing operational cost in SRME.",
-    image: resolveImage("/abstract-neural-net.jpg"),
-    link: "https://new-bwm.vercel.app/",
+      "Built production tools for researchers and modelled cost-optimisation algorithms.",
+    highlights: [
+      "Built the ORSI Karnataka membership portal (Next.js, Supabase, Wix, Razorpay), cutting manual admin work by 70% and improving sign-up throughput by 40%",
+      "Built a Flask/Python Best-Worst Method decision tool adopted by 50+ researchers",
+      "Modelled a simulated-annealing scheduling algorithm (67–74% projected cost reduction) and a TSP routing model (32.7% less modelled daily travel)",
+    ],
+    tech: ["Next.js", "Supabase", "Flask", "Python"],
+    demo: "https://www.orsi-ka.in",
+    demoLabel: "orsi portal",
+    link: "https://bwm-v3.onrender.com/",
+    linkLabel: "bwm tool",
   },
   {
     id: "e3",
-    title: "community ops",
-    subtitle: "techtribe · nov 2025→present",
+    title: "Community Operations Lead",
+    subtitle: "techtribe · nov 2025 → present",
     meta: "techtribe",
     description:
-      "Led operations for an 1800+ member tech community; spearheaded hackathons and technical events designed to make engineering accessible.",
-    image: resolveImage("/abstract-nodes.jpg"),
+      "Led operations for an 1800+ member tech community; ran hackathons and workshops end to end.",
   },
 ];
 
-const educationEntries: CardItem[] = [
+// ─── Skills ──────────────────────────────────────────────────────────────────
+
+export const skillGroups: SkillGroup[] = [
   {
-    id: "ed1",
-    title: "B.E. Computer Science & Engineering",
-    subtitle: "Thiagarajar College of Engineering · 2021→2025",
-    description: "CGPA: 8.11/10.",
-    image: resolveImage("/abstract-education.jpg"),
-    link: "https://www.tce.edu",
+    label: "devops & ci/cd",
+    items: ["Azure DevOps", "Jenkins", "GitHub Actions", "ArgoCD", "SonarQube", "Git"],
+  },
+  { label: "containers & iac", items: ["Docker", "Kubernetes", "Terraform", "Ansible"] },
+  {
+    label: "cloud & observability",
+    items: ["Azure", "AWS", "Prometheus", "Grafana", "Azure Monitor"],
   },
   {
-    id: "ed2",
-    title: "Early Schooling",
-    subtitle: "kendriya vidyalaya · 2009→2021",
-    description: "Completed primary and secondary education.",
-    image: resolveImage("/abstract-schooling.jpg"),
+    label: "ops & security",
+    items: ["ServiceNow", "SSMS", "Linux", "Bash", "PowerShell", "SSL/TLS"],
+  },
+  { label: "languages", items: ["Python", "Java", "SQL"] },
+];
+
+// ─── Credentials ─────────────────────────────────────────────────────────────
+
+export const education = {
+  degree: "B.E. Computer Science & Engineering",
+  institution: "Thiagarajar College of Engineering, Madurai",
+  period: "nov 2021 → may 2025",
+  cgpa: "8.11 / 10",
+  link: "https://www.tce.edu",
+};
+
+export const certifications: Certification[] = [
+  {
+    id: "az-104",
+    vendor: "microsoft azure",
+    code: "AZ-104",
+    name: "Azure Administrator Associate",
+    year: "2025",
+    verify: "",
+  },
+  {
+    id: "az-900",
+    vendor: "microsoft azure",
+    code: "AZ-900",
+    name: "Azure Fundamentals",
+    year: "2025",
+    verify: "",
+  },
+  {
+    id: "ai-900",
+    vendor: "microsoft azure",
+    code: "AI-900",
+    name: "Azure AI Fundamentals",
+    year: "2025",
+    verify: "",
+  },
+  {
+    id: "aws-clf",
+    vendor: "amazon web services",
+    code: "CLF-C02",
+    name: "AWS Certified Cloud Practitioner",
+    year: "dec 2025",
+    verify: "",
   },
 ];
 
-const certificationEntries: CardItem[] = [
+export const leadership = [
+  "Chair, IEEE Student Branch, TCE",
+  "CEO, Entrepreneurship Cell, TCE",
+  "University Rank 1, IEEE Hackathon",
+];
+
+export const publication = {
+  title: "Blockchain-integrated IoV",
+  venue: "book chapter · Research Advances in Network Technologies (CRC Press, 2026)",
+};
+
+// ─── For hire ────────────────────────────────────────────────────────────────
+
+export const services = [
   {
-    id: "cert1",
-    title: "Microsoft Azure Certifications",
-    subtitle: "microsoft · 2025",
-    description:
-      "AZ-104, AZ-204, AZ-900 — Azure Administration, Cloud Development, and Infrastructure.",
-    image: resolveImage("/abstract-azure.jpg"),
-    meta: "azure",
+    code: "ci/cd",
+    title: "pipeline setup & hardening",
+    outcome:
+      "GitHub Actions, Azure DevOps, or Jenkins pipelines with SonarQube and Trivy gates. Faster builds, safer releases.",
   },
   {
-    id: "cert2",
-    title: "AWS Certified Cloud Practitioner",
-    subtitle: "amazon web services · dec 2025",
-    description:
-      "Credential ID: 0e88c7b1-7cab-4c9d-9f4b-e9a0098b816f. AWS cloud concepts, services, security, and architecture.",
-    image: resolveImage("/abstract-aws.jpg"),
-    meta: "aws",
+    code: "k8s",
+    title: "containerise & deploy",
+    outcome: "Dockerise your app and ship it to Kubernetes (AKS/EKS) with GitOps via ArgoCD.",
+  },
+  {
+    code: "obs",
+    title: "monitoring & alerting",
+    outcome: "Prometheus and Grafana dashboards with alerts that fire on real problems, not noise.",
+  },
+  {
+    code: "iac",
+    title: "cloud infra as code",
+    outcome:
+      "Terraform for Azure or AWS, plus SSL/TLS certificate tracking so nothing expires silently.",
   },
 ];
 
-export const education: CardItem[] = [...educationEntries, ...certificationEntries];
+// ─── Contact & SEO ───────────────────────────────────────────────────────────
 
 export const contact = {
   email: "gokulbadrappan@gmail.com",
   github: "https://github.com/gokul-badrappan",
   linkedin: "https://www.linkedin.com/in/gokulbadrappan",
   twitter: null as string | null,
-  blurb: "",
+  /** Cal.com / Calendly link. When null, the hire CTA falls back to email. */
+  booking: null as string | null,
+  blurb:
+    "Hiring for a DevOps or SRE role, or need help with a pipeline? Email is the fastest way to reach me.",
   contactHeading: "get in touch",
-  footer: "© 2026 • all systems nominal",
+  footer: "© 2026 gokul badrappan",
+};
+
+export const site = {
+  repo: "https://github.com/gokul-badrappan/Gokul_Portfolio_Version_2",
+  ciBadge:
+    "https://github.com/gokul-badrappan/Gokul_Portfolio_Version_2/actions/workflows/ci.yml/badge.svg",
+  ciUrl: "https://github.com/gokul-badrappan/Gokul_Portfolio_Version_2/actions/workflows/ci.yml",
 };
 
 export const seo = {
-  title: "",
-  description: "DevOps Engineer & SRE Portfolio.",
+  title: "Gokul Badrappan | DevOps & Site Reliability Engineer",
+  description:
+    "DevOps engineer building CI/CD pipelines, Kubernetes deployments, and observability on Azure and AWS. AZ-104 certified. Open to freelance work.",
   url: "https://www.gokulb.com",
+  image: "https://www.gokulb.com/og-image.png",
   openGraph: {
-    title: "",
-    description: "DevOps Engineer & SRE Portfolio.",
+    title: "Gokul Badrappan | DevOps & SRE",
+    description:
+      "CI/CD, Kubernetes, Terraform, and observability on Azure and AWS. Open to freelance projects.",
   },
-  keywords: ["Gokul Badrappan", "DevOps", "SRE", "Cloud Infrastructure", "Azure", "AWS", "CI/CD"],
+  keywords: [
+    "Gokul Badrappan",
+    "DevOps Engineer",
+    "Site Reliability Engineer",
+    "SRE",
+    "Azure",
+    "AWS",
+    "Kubernetes",
+    "Terraform",
+    "CI/CD",
+    "Freelance DevOps",
+  ],
 };

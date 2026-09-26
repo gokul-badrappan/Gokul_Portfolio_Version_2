@@ -37,7 +37,7 @@
   /* Deep midnight slate */
   --background: oklch(0.16 0.025 265);
   --foreground: oklch(0.96 0.005 260);
-  --card: oklch(0.20 0.028 265);
+  --card: oklch(0.2 0.028 265);
   --card-foreground: oklch(0.96 0.005 260);
   --popover: oklch(0.18 0.028 265);
   --popover-foreground: oklch(0.96 0.005 260);
@@ -52,8 +52,8 @@
   --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.30 0.03 265 / 60%);
-  --input: oklch(0.30 0.03 265);
+  --border: oklch(0.3 0.03 265 / 60%);
+  --input: oklch(0.3 0.03 265);
   --ring: oklch(0.58 0.18 264);
 
   --accent-rgb: 58, 108, 215;
@@ -72,7 +72,8 @@
     border-color: var(--color-border);
   }
 
-  html, body {
+  html,
+  body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -92,11 +93,15 @@
 }
 
 @utility glow-border {
-  box-shadow: var(--glow-sm), inset 0 0 0 1px rgba(58, 108, 215, 0.25);
+  box-shadow:
+    var(--glow-sm),
+    inset 0 0 0 1px rgba(58, 108, 215, 0.25);
 }
 
 @utility glow-border-strong {
-  box-shadow: var(--glow-md), inset 0 0 0 1px rgba(58, 108, 215, 0.55);
+  box-shadow:
+    var(--glow-md),
+    inset 0 0 0 1px rgba(58, 108, 215, 0.55);
 }
 
 @utility text-glow {
@@ -104,16 +109,66 @@
 }
 
 @keyframes flow-dot {
-  0% { offset-distance: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { offset-distance: 100%; opacity: 0; }
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(58, 108, 215, 0.3); }
-  50% { box-shadow: 0 0 24px rgba(58, 108, 215, 0.7); }
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(58, 108, 215, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(58, 108, 215, 0.7);
+  }
 }
 
-.scrollbar-none::-webkit-scrollbar { display: none; }
-.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+/* ── Skills: monochrome icons that take their brand colour on hover ── */
+.skill-chip:hover svg {
+  color: var(--brand);
+  filter: drop-shadow(0 0 6px var(--brand));
+}
+
+/* ── Accessibility ── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* keeps section headings clear of the fixed navbar */
+}
+
+:focus-visible {
+  outline: 2px solid rgb(58, 108, 215);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -6,11 +6,21 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Real build metadata shown in the HUD and the "how this site ships" section.
+// Vercel sets VERCEL_GIT_COMMIT_SHA; GitHub Actions sets GITHUB_SHA.
+const commitSha = process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.GITHUB_SHA ?? "local";
+
 export default defineConfig({
   nitro: { preset: "vercel" },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+  },
+  vite: {
+    define: {
+      __COMMIT_SHA__: JSON.stringify(commitSha),
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    },
   },
 });

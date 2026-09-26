@@ -17,10 +17,18 @@ React, Tailwind CSS, Framer Motion.
 
 Icons: Monochrome by default, transitioning to brand colors on hover.
 
-Immediate Developer Goals (Do not overwrite existing UI styling):
+Content rules:
 
-Fix CSS clipping on scaling skill icons (remove overflow-hidden, adjust padding).
+All copy and figures must match resume.pdf. Edit content only in src/data/portfolio.ts.
 
-Inject real resume data into the Experience/Projects modal pop-ups.
+Every number or status shown on the site must be real (no Math.random telemetry). The HUD and the "how this site ships" section read real build metadata (**COMMIT_SHA**, **BUILD_TIME** in vite.config.ts) and the GitHub Actions badge.
 
-Rebuild the DevSecOps pipeline packet animation using a true Framer Motion SVG <path> and <circle> rather than a CSS div translation.
+Page order: hero + status readout, experience, projects (with case studies), skills, credentials, how this site ships, for hire, contact.
+
+Open TODOs:
+
+Publish the Secure CI/CD repo and set its github link in portfolio.ts.
+
+Add certification verify links (Credly / Microsoft Learn) in portfolio.ts.
+
+Add a booking link (contact.booking) if using Cal.com or Calendly.
