@@ -7,19 +7,19 @@ export const hero = {
   role: "devops engineer · chennai, india",
   headline: "i ship releases safely and keep production up.",
   glowingWord: "keep production up",
-  subtitleTags: ["azure", "aws", "kubernetes", "terraform", "observability"],
   availability: "open to freelance devops work",
 };
 
 export const overview =
   "DevOps engineer with 1.5 years of enterprise release orchestration, infrastructure automation, and platform observability on Azure. I own CI/CD delivery across 7 application portfolios and 4 environment tiers, and build GitOps, DevSecOps, and monitoring setups on the side. Azure and AWS certified.";
 
-/** Rendered as a terminal-style status readout in the hero. All figures come from the resume. */
-export const proofMetrics = [
-  { key: "availability", value: "99.9%", label: "sustained on supported enterprise apps" },
-  { key: "releases", value: "7", label: "app portfolios across 4 environment tiers" },
-  { key: "tls", value: "250+", label: "domains, zero expiry-driven outages" },
-  { key: "toil", value: "-60%", label: "time per ops task after automation" },
+/** Rendered as a `gokul --status` terminal readout in the hero. Describes the work, not numbers. */
+export const statusLines = [
+  { key: "currently", value: "devops engineer on enterprise azure releases" },
+  { key: "focus", value: "ci/cd, gitops, observability, tls certificate lifecycle" },
+  { key: "building", value: "ai inference gateway on aws (terraform, ecs fargate)" },
+  { key: "stack", value: "azure · aws · kubernetes · terraform · prometheus" },
+  { key: "open to", value: "devops / sre roles and freelance projects" },
 ];
 
 export const resume = {
@@ -198,6 +198,14 @@ export const certifications: Certification[] = [
     code: "CLF-C02",
     name: "AWS Certified Cloud Practitioner",
     year: "dec 2025",
+    verify: "",
+  },
+  {
+    id: "cca-f",
+    vendor: "anthropic",
+    code: "CCA-F",
+    name: "Claude Certified Architect, Foundations",
+    year: "2026",
     verify: "",
   },
 ];

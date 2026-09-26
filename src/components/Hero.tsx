@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { hero, proofMetrics } from "@/data/portfolio";
+import { hero, statusLines } from "@/data/portfolio";
 import { ResumeButton } from "./ResumeButton";
 
 const GLOW_STYLE = { color: "rgb(58,108,215)" };
@@ -21,33 +21,21 @@ function HeadlineWithGlow({ text, glow }: { text: string; glow: string }) {
 
 function StatusReadout() {
   return (
-    <div
-      className="w-full max-w-2xl rounded-xl border border-white/10 bg-black/40 text-left overflow-x-auto"
-      role="table"
-      aria-label="Key results"
-    >
+    <div className="w-full max-w-2xl rounded-xl border border-white/10 bg-black/40 text-left overflow-x-auto">
       <div className="px-4 py-2 border-b border-white/10 font-mono text-[11px] text-white/60">
         <span className="text-[rgb(58,108,215)]">$</span> gokul --status
       </div>
-      <div className="px-4 py-3 font-mono text-xs sm:text-sm">
-        {proofMetrics.map((m) => (
+      <dl className="px-4 py-3 font-mono text-xs sm:text-sm">
+        {statusLines.map((line) => (
           <div
-            key={m.key}
-            role="row"
-            className="grid grid-cols-[6.5rem_4rem_1fr] sm:grid-cols-[8rem_5rem_1fr] gap-x-3 py-1"
+            key={line.key}
+            className="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-3 py-1"
           >
-            <span role="cell" className="text-white/60">
-              {m.key}
-            </span>
-            <span role="cell" className="text-white text-glow">
-              {m.value}
-            </span>
-            <span role="cell" className="text-white/70 lowercase">
-              {m.label}
-            </span>
+            <dt className="text-white/60">{line.key}</dt>
+            <dd className="text-white/85 lowercase">{line.value}</dd>
           </div>
         ))}
-      </div>
+      </dl>
     </div>
   );
 }
@@ -80,7 +68,6 @@ export function Hero() {
         className="mt-6 flex flex-col items-center gap-2"
       >
         <p className="font-mono text-sm text-white/80 lowercase">{hero.role}</p>
-        <p className="font-mono text-xs text-white/60 lowercase">{hero.subtitleTags.join(" · ")}</p>
       </motion.div>
 
       <motion.div
